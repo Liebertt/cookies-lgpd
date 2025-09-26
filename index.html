@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console de Privacidade LGPD</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuração de Fonte Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            --primary-color: #4f46e5; /* Indigo 600 */
+            --primary-dark: #4338ca; /* Indigo 700 */
+            --success-color: #10b981; /* Emerald 500 */
+            --warning-color: #f59e0b; /* Amber 500 */
+            --danger-color: #ef4444; /* Red 500 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+        }
+
+        /* Estilos customizados para o banner e console */
+        .lgpd-banner {
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            bottom: 0;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        .lgpd-banner.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .cookie-status-circle {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        /* Estilo para simular o log de ações */
+        #log-area {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .log-entry-info { background-color: #e0f2f1; color: #0f766e; } /* Teal 100/700 */
+        .log-entry-success { background-color: #d1fae5; color: #065f46; } /* Emerald 100/700 */
+        .log-entry-warning { background-color: #fef3c7; color: #b45309; } /* Amber 100/700 */
+        .log-entry-danger { background-color: #fee2e2; color: #991b1b; } /* Red 100/700 */
+
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Cabeçalho Principal -->
+    <header class="text-center mb-10">
+        <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Console de Privacidade LGPD
+        </h1>
+        <p class="mt-2 text-lg text-gray-600">
+            Simulação de Gestão de Cookies e Consentimento em conformidade com a LGPD.
+        </p>
+    </header>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Coluna de Configuração (Baseado nos princípios da LGPD) -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.525.321 1.025.568 1.565.704"></path></svg>
+                Tipos de Cookies (LGPD - Finalidade e Necessidade)
+            </h2>
+            <p class="text-gray-500 mb-6">
+                Defina as categorias de cookies utilizadas pelo seu site. O consentimento é obrigatório para as categorias que **não são Estritamente Necessárias**.
+            </p>
+
+            <div id="cookie-config" class="space-y-4">
+                <!-- Cookie Estritamente Necessário (Sempre Ativo - Base Legal: Interesse Legítimo ou Execução de Contrato) -->
+                <div class="p-4 bg-gray-50 rounded-lg flex justify-between items-center">
+                    <div>
+                        <span class="font-semibold text-gray-900">1. Estritamente Necessários</span>
+                        <p class="text-sm text-gray-500">Essenciais para o funcionamento do site (ex: sessão, carrinho). Não requerem consentimento, conforme a LGPD.</p>
+                    </div>
+                    <span class="px-3 py-1 text-sm font-medium text-indigo-700 bg-indigo-100 rounded-full">ATIVO</span>
+                </div>
+                
+                <!-- Cookie de Desempenho/Analytics (Requer Consentimento) -->
+                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                    <label for="analytics-toggle" class="flex justify-between items-center cursor-pointer">
+                        <div>
+                            <span class="font-semibold text-gray-900">2. Desempenho e Analytics</span>
+                            <p class="text-sm text-gray-500">Monitorar o tráfego do site e medir o desempenho. Ajuda a melhorar a experiência do usuário.</p>
+                        </div>
+                        <input type="checkbox" id="analytics-toggle" checked class="form-checkbox h-5 w-5 text-indigo-600 rounded focus:ring-indigo-500">
+                    </label>
+                </div>
+
+                <!-- Cookie de Marketing/Publicidade Direcionada (Requer Consentimento) - Conflito LGPD/Privacidade -->
+                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                    <label for="marketing-toggle" class="flex justify-between items-center cursor-pointer">
+                        <div>
+                            <span class="font-semibold text-gray-900">3. Marketing e Publicidade Direcionada</span>
+                            <p class="text-sm text-gray-500">Rastreamento de comportamento para anúncios personalizados (tema central do PDF). **Alto risco de privacidade.**</p>
+                        </div>
+                        <input type="checkbox" id="marketing-toggle" checked class="form-checkbox h-5 w-5 text-indigo-600 rounded focus:ring-indigo-500">
+                    </label>
+                </div>
+
+            </div>
+
+            <button onclick="resetConsent()" class="mt-6 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-150 ease-in-out shadow-md">
+                <svg class="w-5 h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z"></path></svg>
+                Zerar Consentimento e Reexibir Banner
+            </button>
+        </div>
+
+        <!-- Coluna de Simulação e Log -->
+        <div class="lg:col-span-1 space-y-8">
+            <!-- Estatísticas Atuais -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Status de Consentimento (LGPD)</h2>
+                <div class="space-y-3" id="current-status">
+                    <!-- Status será preenchido pelo JS -->
+                </div>
+            </div>
+
+            <!-- Log de Ações -->
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-4 0V3m0 2h.01M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"></path></svg>
+                    Log de Ações
+                </h2>
+                <div id="log-area" class="bg-gray-50 border border-gray-200 text-sm">
+                    <!-- Logs serão adicionados aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Banner de Consentimento (Posicionado no final da tela) -->
+    <div id="lgpd-banner" class="lgpd-banner fixed left-0 w-full p-4 bg-gray-900 text-white shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between">
+            <p class="text-sm mb-3 md:mb-0 md:mr-6">
+                Usamos cookies para personalizar anúncios (Marketing) e analisar o uso do site (Analytics). Clique em **"Configurar"** para gerenciar suas preferências e exercer seu direito à privacidade, conforme a LGPD.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                <button id="config-btn" class="px-4 py-2 text-sm font-medium bg-gray-700 hover:bg-gray-600 rounded-lg transition duration-150">
+                    Configurar
+                </button>
+                <button id="reject-btn" class="px-4 py-2 text-sm font-medium border border-white hover:bg-gray-800 rounded-lg transition duration-150">
+                    Rejeitar Todos
+                </button>
+                <button id="accept-btn" class="px-4 py-2 text-sm font-medium bg-indigo-600 hover:bg-indigo-700 rounded-lg transition duration-150">
+                    Aceitar Todos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Configuração de Cookies -->
+    <div id="config-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center z-[1001]">
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full m-4 p-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Preferências de Privacidade</h3>
+            <p class="text-sm text-gray-600 mb-6">
+                Você pode alterar suas preferências a qualquer momento. Suas escolhas respeitam os princípios de **Finalidade** e **Necessidade** da LGPD.
+            </p>
+
+            <div class="space-y-4">
+                <!-- Estritamente Necessários -->
+                <div class="p-3 bg-gray-100 rounded-lg flex justify-between items-center">
+                    <div>
+                        <span class="font-semibold text-gray-800">1. Estritamente Necessários</span>
+                        <p class="text-xs text-gray-500">Permitem o uso básico do site. Não podem ser desativados.</p>
+                    </div>
+                    <span class="text-sm font-medium text-green-700">Obrigatório</span>
+                </div>
+
+                <!-- Analytics -->
+                <div class="p-3 bg-white rounded-lg border border-gray-200">
+                    <label for="modal-analytics" class="flex justify-between items-start cursor-pointer">
+                        <div>
+                            <span class="font-semibold text-gray-800">2. Desempenho e Analytics</span>
+                            <p class="text-xs text-gray-500">Coleta de dados anônimos para otimização.</p>
+                        </div>
+                        <input type="checkbox" id="modal-analytics" class="mt-1 h-4 w-4 text-indigo-600 rounded">
+                    </label>
+                </div>
+                
+                <!-- Marketing/Publicidade -->
+                <div class="p-3 bg-white rounded-lg border border-gray-200">
+                    <label for="modal-marketing" class="flex justify-between items-start cursor-pointer">
+                        <div>
+                            <span class="font-semibold text-gray-800">3. Marketing e Publicidade Direcionada</span>
+                            <p class="text-xs text-red-500">Rastreamento para publicidade personalizada. Desativar impede o rastreamento.</p>
+                        </div>
+                        <input type="checkbox" id="modal-marketing" class="mt-1 h-4 w-4 text-indigo-600 rounded">
+                    </label>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <button onclick="savePreferences()" class="px-4 py-2 text-sm font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition duration-150">
+                    Salvar Preferências
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const BANNER_ID = 'lgpd-banner';
+        const MODAL_ID = 'config-modal';
+        const LOG_AREA_ID = 'log-area';
+        const STATUS_AREA_ID = 'current-status';
+        const APP_ID = 'lgpd_cookie_console';
+
+        // Definindo as categorias de cookies
+        const cookieCategories = {
+            necessary: { name: 'Estritamente Necessários', required: true, toggleId: null },
+            analytics: { name: 'Analytics', required: false, toggleId: 'analytics-toggle' },
+            marketing: { name: 'Marketing Direcionado', required: false, toggleId: 'marketing-toggle' }
+        };
+
+        // Estado inicial de consentimento
+        let consentStatus = {
+            necessary: true,
+            analytics: false,
+            marketing: false,
+            accepted: false
+        };
+
+        /**
+         * Inicializa a aplicação, verifica o consentimento e exibe o banner se necessário.
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            logAction('Inicialização', 'Aplicação web iniciada.', 'info');
+            loadConsent();
+            setupEventListeners();
+            updateUI();
+        });
+
+        /**
+         * Adiciona um evento ao Log de Ações.
+         * @param {string} title - Título da ação.
+         * @param {string} message - Mensagem detalhada.
+         * @param {string} type - Tipo: 'info', 'success', 'warning', 'danger'.
+         */
+        function logAction(title, message, type) {
+            const logArea = document.getElementById(LOG_AREA_ID);
+            const now = new Date().toLocaleTimeString('pt-BR');
+            
+            let typeClass = 'log-entry-info';
+            if (type === 'success') typeClass = 'log-entry-success';
+            if (type === 'warning') typeClass = 'log-entry-warning';
+            if (type === 'danger') typeClass = 'log-entry-danger';
+
+            const logEntry = document.createElement('div');
+            logEntry.className = `p-2 my-1 rounded-md ${typeClass} break-words`;
+            logEntry.innerHTML = `<strong>[${now}] ${title}:</strong> ${message}`;
+            
+            logArea.prepend(logEntry); // Adiciona no topo
+        }
+
+        /**
+         * Carrega o consentimento salvo no localStorage.
+         */
+        function loadConsent() {
+            const savedConsent = localStorage.getItem(APP_ID + '_consent');
+            if (savedConsent) {
+                try {
+                    consentStatus = JSON.parse(savedConsent);
+                    logAction('Consentimento Carregado', 'Preferências de privacidade recuperadas do armazenamento local.', 'success');
+                    if (!consentStatus.accepted) {
+                         // Se houver status, mas não aceito (usuário fechou ou rejeitou), reexibir banner para cumprimento da LGPD.
+                         showBanner();
+                    } else {
+                        hideBanner();
+                    }
+                } catch (e) {
+                    logAction('Erro de Carga', 'Não foi possível carregar as preferências salvas.', 'danger');
+                    showBanner();
+                }
+            } else {
+                logAction('Primeiro Acesso', 'Nenhum consentimento encontrado. Exibindo banner obrigatório.', 'warning');
+                showBanner();
+            }
+        }
+
+        /**
+         * Salva o consentimento no localStorage.
+         */
+        function saveConsent() {
+            localStorage.setItem(APP_ID + '_consent', JSON.stringify(consentStatus));
+            updateUI();
+        }
+
+        /**
+         * Atualiza a interface (status, toggles) com base no estado do consentimento.
+         */
+        function updateUI() {
+            // 1. Atualizar Toggles de Configuração
+            document.getElementById('analytics-toggle').checked = consentStatus.analytics;
+            document.getElementById('marketing-toggle').checked = consentStatus.marketing;
+            
+            // 2. Atualizar Status Visual
+            const statusArea = document.getElementById(STATUS_AREA_ID);
+            statusArea.innerHTML = ''; // Limpar antes de preencher
+            
+            const cookiesToTrack = [
+                { id: 'necessary', color: 'bg-green-500', icon: '✅' },
+                { id: 'analytics', color: consentStatus.analytics ? 'bg-indigo-500' : 'bg-gray-400', icon: consentStatus.analytics ? '✅' : '❌' },
+                { id: 'marketing', color: consentStatus.marketing ? 'bg-red-500' : 'bg-gray-400', icon: consentStatus.marketing ? '⚠️' : '❌' }
+            ];
+
+            cookiesToTrack.forEach(cookie => {
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'flex items-center text-gray-700';
+                statusDiv.innerHTML = `
+                    <span class="cookie-status-circle ${cookie.color}"></span>
+                    <span class="font-medium">${cookieCategories[cookie.id].name}:</span>
+                    <span class="ml-2 font-bold ${cookie.color.replace('bg-', 'text-')}">
+                        ${consentStatus[cookie.id] ? 'PERMITIDO' : (cookie.id === 'necessary' ? 'PERMITIDO (Obrigatório)' : 'BLOQUEADO')}
+                    </span>
+                `;
+                statusArea.appendChild(statusDiv);
+                
+                // Simulação de uso de dados
+                if (cookie.id !== 'necessary') {
+                    simulateDataUse(cookie.id, consentStatus[cookie.id]);
+                }
+            });
+        }
+        
+        /**
+         * Simula a execução de código que coleta/usa dados.
+         * @param {string} category - Categoria do cookie (analytics ou marketing).
+         * @param {boolean} isPermitted - Se o consentimento foi dado.
+         */
+        function simulateDataUse(category, isPermitted) {
+            const name = cookieCategories[category].name;
+            if (isPermitted) {
+                logAction(`Uso de Dados de ${name}`, `Iniciando rastreamento de dados de navegação para a finalidade de ${name}. (Baseado em Consentimento)`, 'success');
+            } else {
+                logAction(`Bloqueio de Dados de ${name}`, `O rastreamento e publicidade ${name.toLowerCase()} foram bloqueados, em respeito à não-discriminação e autonomia do usuário.`, 'danger');
+            }
+        }
+
+        /**
+         * Exibe o banner de consentimento.
+         */
+        function showBanner() {
+            document.getElementById(BANNER_ID).classList.add('active');
+            // Bloqueia rolagem do corpo
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        /**
+         * Esconde o banner de consentimento.
+         */
+        function hideBanner() {
+            document.getElementById(BANNER_ID).classList.remove('active');
+            // Libera rolagem do corpo
+            document.body.style.overflow = '';
+        }
+
+        /**
+         * Exibe o modal de configuração.
+         */
+        function showModal() {
+            // Sincroniza o estado atual do consentimento com os toggles do modal
+            document.getElementById('modal-analytics').checked = consentStatus.analytics;
+            document.getElementById('modal-marketing').checked = consentStatus.marketing;
+            document.getElementById(MODAL_ID).classList.remove('hidden');
+            document.getElementById(MODAL_ID).classList.add('flex');
+            hideBanner(); // Esconde o banner enquanto o modal está aberto
+        }
+
+        /**
+         * Esconde o modal de configuração.
+         */
+        function hideModal() {
+            document.getElementById(MODAL_ID).classList.add('hidden');
+            document.getElementById(MODAL_ID).classList.remove('flex');
+        }
+
+        /**
+         * Gerencia todos os listeners de eventos.
+         */
+        function setupEventListeners() {
+            // Listeners para o Banner
+            document.getElementById('accept-btn').addEventListener('click', acceptAll);
+            document.getElementById('reject-btn').addEventListener('click', rejectAll);
+            document.getElementById('config-btn').addEventListener('click', showModal);
+
+            // Listeners para o Modal de Configuração
+            // (Função savePreferences() é chamada pelo botão 'Salvar Preferências')
+            
+            // Listeners para Toggles do Painel de Configuração
+            document.getElementById('analytics-toggle').addEventListener('change', (e) => {
+                consentStatus.analytics = e.target.checked;
+                // Não salva imediatamente, apenas atualiza o estado interno (simulando que é apenas um espelho do consentimento dado)
+                // O consentimento é definitivo após a escolha do usuário no banner/modal
+                updateUI();
+            });
+            document.getElementById('marketing-toggle').addEventListener('change', (e) => {
+                consentStatus.marketing = e.target.checked;
+                updateUI();
+            });
+        }
+
+        /**
+         * Ação: Aceitar Todos os Cookies.
+         */
+        function acceptAll() {
+            consentStatus.necessary = true;
+            consentStatus.analytics = true;
+            consentStatus.marketing = true;
+            consentStatus.accepted = true;
+            saveConsent();
+            hideBanner();
+            logAction('Consentimento Total', 'Usuário aceitou todos os cookies, incluindo Marketing Direcionado. Publicidade personalizada ativada.', 'success');
+        }
+
+        /**
+         * Ação: Rejeitar Todos os Cookies (exceto os necessários).
+         */
+        function rejectAll() {
+            consentStatus.necessary = true; // Necessários são obrigatórios
+            consentStatus.analytics = false;
+            consentStatus.marketing = false;
+            consentStatus.accepted = true;
+            saveConsent();
+            hideBanner();
+            logAction('Consentimento Rejeitado', 'Usuário rejeitou cookies não essenciais. Rastreamento e Publicidade bloqueados.', 'danger');
+        }
+
+        /**
+         * Ação: Salvar Preferências (do modal).
+         */
+        function savePreferences() {
+            consentStatus.analytics = document.getElementById('modal-analytics').checked;
+            consentStatus.marketing = document.getElementById('modal-marketing').checked;
+            consentStatus.accepted = true;
+            saveConsent();
+            hideModal();
+            logAction('Preferências Salvas', 'Usuário definiu configurações customizadas. Status salvo e LGPD respeitada.', 'info');
+        }
+
+        /**
+         * Ação: Resetar o consentimento (do botão no painel).
+         */
+        function resetConsent() {
+            localStorage.removeItem(APP_ID + '_consent');
+            consentStatus = { necessary: true, analytics: false, marketing: false, accepted: false };
+            logAction('RESET', 'Consentimento zerado (simulando novo usuário). Banner será reexibido.', 'warning');
+            updateUI();
+            showBanner();
+        }
+
+    </script>
+</body>
+</html>
