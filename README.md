@@ -43,7 +43,7 @@ O projeto é composto por um único arquivo para máxima simplicidade:
 
 |       Arquivo             | Descrição        | Tecnologia
 |---------------------------| -----------------| ------------
-| `lgpd_privacy_console.html` | Contém toda a estrutura HTML,               estilização CSS e lógica JavaScript para o console de consentimento. | HTML5,<br/> Tailwind CSS,<br/> Vanilla JavaScript
+| `index.html` | Contém toda a estrutura HTML,               estilização CSS e lógica JavaScript para o console de consentimento. | HTML5,<br/> Tailwind CSS,<br/> Vanilla JavaScript
 | `README.md` | O presente arquivo. | Markdown
 
 
