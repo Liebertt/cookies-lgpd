@@ -38,6 +38,8 @@ Este é um projeto de arquivo único (`index.html`) e pode ser executado diretam
 Opção 2: Visualizar pelo GitHub Pages
 Se você configurou o GitHub Pages para servir o arquivo HTML principal (ou se o renomeou para `index.html`), o console estará acessível diretamente no link da sua página (ex: `https://<seu-usuario>.github.io/lgpd-privacy-console/`).
 
+**Nota**: O arquivo HTML original (lgpd_privacy_console.html) foi renomeado para index.html para resolver o problema de carregamento e garantir que o seu aplicativo seja o conteúdo principal na web.
+
 💻 Estrutura do Projeto
 O projeto é composto por um único arquivo para máxima simplicidade:
 
