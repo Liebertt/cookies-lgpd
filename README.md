@@ -22,7 +22,7 @@ O projeto foi desenvolvido com base nos princípios centrais da LGPD, como **Fin
 
 ## 🚀 Como Visualizar (GitHub Pages)
 
-Este é um projeto de arquivo único (`lgpd_privacy_console.html`) e pode ser executado diretamente em qualquer navegador moderno.
+Este é um projeto de arquivo único (`index.html`) e pode ser executado diretamente em qualquer navegador moderno.
 
 ### Opção 1: Clonar e Abrir Localmente
 
